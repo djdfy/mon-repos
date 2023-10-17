@@ -34,3 +34,23 @@ function addTwoNumbers2 (l1, l2) {
       res.push(1)
   	return res
 }
+
+//real listNode
+
+var addTwoNumbers = function(l1, l2) {        
+        function addLn(l1, l2, add = 0) {
+            if (l1 || l2) {
+                let val1 = l1 ? l1.val : 0;
+                let val2 = l2 ? l2.val : 0;
+                let next1 = l1 ? l1.next : null;
+                let next2 = l2 ? l2.next : null;
+                let sum = val1 + val2 + add;
+                let val = sum % 10;                
+                add = Math.floor((sum)/10);
+                return new ListNode(val, addLn(next1, next2, add));
+            } else if (add > 0)
+                return new ListNode(add, null);
+        }
+       
+        return addLn(l1, l2)
+};
